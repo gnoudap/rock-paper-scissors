@@ -1,17 +1,14 @@
-// Global game variables
 let humanScore = 0;
 let computerScore = 0;
 let roundsPlayed = 0;
 const winPoints = 5;
 
-// Computer choice function
 function getComputerChoice() {
     const choices = ['rock', 'paper', 'scissors'];
     const randomIndex = Math.floor(Math.random() * 3);
     return choices[randomIndex];
 }
 
-// Determine winner function
 function determineWinner(humanChoice, computerChoice) {
     const resultText = document.querySelector('#result-text');
     const playerScoreEl = document.querySelector('#player-score');
@@ -37,7 +34,6 @@ function determineWinner(humanChoice, computerChoice) {
         computerScore++;
     }
     
-    // Update UI
     resultText.textContent = `You chose ${humanChoice}, computer chose ${computerChoice}. ${roundResult}`;
     playerScoreEl.textContent = humanScore;
     computerScoreEl.textContent = computerScore;
@@ -45,13 +41,11 @@ function determineWinner(humanChoice, computerChoice) {
     roundsPlayed++;
     console.log(`Score: You ${humanScore} - ${computerScore} Computer`);
     
-    // Check if game is over
     if (humanScore == winPoints || computerScore == winPoints) {
         endGame();
     }
 }
 
-// End game function
 function endGame() {
     const resultText = document.querySelector('#result-text');
     
@@ -68,24 +62,20 @@ function endGame() {
         console.log("🤝 The game is a tie!");
     }
     
-    // Update UI with final result
     resultText.textContent = `GAME OVER! ${gameResult} Click any button to start a new game!`;
     
-    // Reset for new game
     humanScore = 0;
     computerScore = 0;
     roundsPlayed = 0;
     console.log("Click any button to start a new game!");
     
-    // Reset UI scores
     setTimeout(() => {
         document.querySelector('#player-score').textContent = '0';
         document.querySelector('#computer-score').textContent = '0';
         resultText.textContent = 'Game ready! Choose your move!';
-    }, 3000); // Reset after 3 seconds
+    }, 3000); 
 }
 
-// Set up event listeners
 function setupEventListeners() {
     const rock = document.querySelector('#rock');
     const paper = document.querySelector('#paper');
@@ -107,7 +97,6 @@ function setupEventListeners() {
     });
 }
 
-// Initialize the game when page loads
 document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     document.querySelector('#result-text').textContent = 'Game ready! Choose your move!';
